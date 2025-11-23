@@ -565,53 +565,207 @@ ul {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 25px;
+        /* Ensure safe area */
+    }
+
+    .header {
+        width: 90%;
+        top: 15px;
+        height: 50px;
+        /* Slightly smaller header */
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        padding-left: 0;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+
+    .hero::before,
+    .hero::after {
+        width: 300px;
+        /* Smaller rings */
+        height: 300px;
+        right: 50%;
+        transform: translateX(50%);
+        /* Center rings */
+        top: 25%;
+        opacity: 0.15;
+    }
+
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 12vw;
+        /* Fluid size to prevent overflow */
+        line-height: 1.1;
+        margin-bottom: 30px;
+        width: 100%;
+        word-break: break-word;
+        /* Prevent horizontal scroll */
+        hyphens: auto;
+    }
+
+    .hero-title span {
+        display: inline;
+        /* Flow naturally */
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+
+    .section {
+        padding: 80px 0;
+        overflow: hidden;
+        /* Contain overflow */
+    }
+
+    .section-title {
+        font-size: 15vw;
+        /* Fluid size */
+        left: 50%;
+        transform: translateX(-50%);
+        top: -20px;
+        width: 100%;
+        text-align: center;
+        opacity: 0.1;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        white-space: normal;
+        /* Allow wrapping */
+        word-break: break-all;
+        line-height: 0.8;
+    }
+
+    .section-header {
+        padding-left: 0;
+        margin-bottom: 50px;
+        text-align: center;
+        border-left: none;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 15px;
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .section-desc {
+        margin-left: 0;
+        display: block;
+        margin-top: 5px;
+        font-size: 0.8rem;
+    }
+
+    .about-content {
+        font-size: 0.95rem;
+        text-align: left;
+        padding: 0 10px;
+    }
+
+    .card-grid {
+        padding-left: 0;
+        gap: 30px;
+    }
+
+    .card {
+        padding: 30px 20px;
+        max-width: 100%;
+        border-radius: 16px;
+    }
+
+    .card:nth-child(even) {
+        text-align: left;
+        border-left: 2px solid var(--accent);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card:nth-child(even) .card-icon {
+        margin-left: 0;
+    }
+
+    .card:nth-child(even)::before {
+        left: 0;
+        right: auto;
     }
 
     .hamburger {
         display: block;
+        z-index: 2000;
+        /* Highest priority */
+        flex-shrink: 0;
+    }
+
+    .hamburger span {
+        background-color: #fff;
+        /* Force visibility */
     }
 
     .nav {
         position: fixed;
-        top: 70px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: var(--bg-color);
-        transition: 0.4s;
-        padding-top: 60px;
+        top: 75px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        width: 90%;
+        height: auto;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 30px 0;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
     }
 
     .nav.active {
-        right: 0;
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+        right: auto;
+        /* Ensure no conflict */
     }
 
     .nav-list {
         flex-direction: column;
         align-items: center;
-        gap: 40px;
+        gap: 25px;
     }
 
     .company-table dl {
         flex-direction: column;
-        gap: 8px;
+        gap: 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 15px 0;
     }
 
     .company-table dt {
         width: 100%;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: var(--accent);
+        margin-bottom: 5px;
     }
 
     .company-table dd {
         width: 100%;
+        font-size: 0.95rem;
     }
 
     .btn-hero,
     .btn-contact {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
+        padding: 16px 0;
     }
 }
