@@ -1024,6 +1024,24 @@ button {
     color: var(--color-accent);
 }
 
+/* Form CTA button */
+.btn--form {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 48px;
+    font-size: 0.9rem;
+}
+
+.btn--form svg {
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.btn--form:hover svg {
+    stroke: var(--color-primary);
+}
+
 /* ============================================
    Corporate Development Page
    ============================================ */
