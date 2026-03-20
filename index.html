@@ -6,207 +6,367 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>alvavinci LLC | Architecting Value, Investing in Future</title>
+    <title>alvavinci LLC | Building Long-Term Value Through Business and Capital</title>
     <meta name="description"
-        content="alvavinci LLC is a strategic holding company based in Japan, bridging IT solutions and asset management. We build the future through technology and investment strategies.">
-    <meta name="keywords" content="alvavinci, Investment, IT Solutions, Web3, Crypto, Asset Management, Oita, Japan">
+        content="alvavinci LLC is a holding company focused on long-term value creation through investment and business operations. We combine capital allocation with operational execution to achieve sustainable growth.">
+    <meta name="keywords"
+        content="alvavinci, holding company, investment, capital allocation, crypto, US equities, IT, AI, SES, corporate development, real estate">
     <meta name="author" content="alvavinci LLC">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alvavinci.com/">
-    <meta property="og:title" content="alvavinci LLC | Architecting Value, Investing in Future">
+    <meta property="og:title" content="alvavinci LLC | Building Long-Term Value Through Business and Capital">
     <meta property="og:description"
-        content="alvavinci LLC is a strategic holding company bridging IT solutions and asset management.">
+        content="A holding company focused on sustainable growth through investment and operations.">
     <meta property="og:image" content="og-image.jpg">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://alvavinci.com/">
     <meta property="twitter:title" content="alvavinci LLC">
-    <meta property="twitter:description" content="Architecting Value. Investing in Future.">
+    <meta property="twitter:description"
+        content="Building long-term value through business and capital.">
     <meta property="twitter:image" content="og-image.jpg">
 
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
 
-    <header class="header">
+    <!-- Header -->
+    <header class="header" id="header">
         <div class="container header-inner">
-            <div class="logo">
-                <a href="#" class="logo-text">alvavinci</a>
-            </div>
-            <nav class="nav">
+            <a href="index.html" class="logo">alvavinci</a>
+            <nav class="nav" id="nav">
                 <ul class="nav-list">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#business">Business</a></li>
-                    <li><a href="#group">Group</a></li>
-                    <li><a href="#company">Company</a></li>
-                    <li><a href="#contact" class="btn-nav">Contact</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#business" class="nav-link">Business</a></li>
+                    <li><a href="#group" class="nav-link">Group</a></li>
+                    <li><a href="#vision" class="nav-link">Vision</a></li>
+                    <li><a href="#message" class="nav-link">Message</a></li>
                 </ul>
             </nav>
-            <div class="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
     <main>
+
+        <!-- Hero Section -->
         <section class="hero">
-            <div class="hero-overlay"></div>
             <div class="container hero-content">
-                <h1 class="hero-title fade-up">
-                    Architecting<br>
-                    <span>Value.</span>
-                    Investing in<br>
-                    <span>Future.</span>
+                <p class="hero-label fade-in">alvavinci LLC</p>
+                <h1 class="hero-title fade-in delay-1">
+                    Building long-term value<br>
+                    through business and capital.
                 </h1>
-                <p class="hero-subtitle fade-up delay-1">Bridging Technology and Financial Assets.</p>
-                <a href="#business" class="btn-hero fade-up delay-2">Explore Data</a>
+                <p class="hero-description fade-in delay-2">
+                    A holding company focused on sustainable growth through<br class="hide-mobile">
+                    investment and operational execution.
+                </p>
+                <a href="#about" class="btn btn--primary fade-in delay-3">Learn More</a>
+            </div>
+            <div class="hero-scroll fade-in delay-3">
+                <span>Scroll</span>
+                <div class="hero-scroll-line"></div>
             </div>
         </section>
 
-        <section id="about" class="section about">
+        <!-- About Section -->
+        <section id="about" class="section">
             <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">About Us</h2>
-                    <p class="section-desc">Who We Are</p>
+                <div class="section-header fade-in">
+                    <span class="section-label">About</span>
+                    <h2 class="section-title">Who We Are</h2>
                 </div>
-                <div class="about-content fade-up">
-                    <p>
-                        alvavinci LLC is a holding company that operates on two pillars: <br>
-                        <strong>Technology-driven Problem Solving</strong> and <strong>Strategic Asset
-                            Management</strong>.
-                    </p>
-                    <p style="margin-top: 20px;">
-                        Beyond creating business value through IT solutions, we build a sustainable growth ecosystem by
-                        investing in financial assets such as Cryptocurrencies (Web3/DeFi) and Global Equities.
-                    </p>
+                <div class="about-grid">
+                    <div class="about-text fade-in">
+                        <p>
+                            alvavinci LLC is a holding company focused on long-term value creation
+                            through investment and business operations. We combine capital allocation
+                            with operational execution to achieve sustainable growth.
+                        </p>
+                        <p>
+                            Our approach is disciplined and patient. We believe in the compounding
+                            effect of steady, rational decision-making over time. Rather than chasing
+                            short-term trends, we build durable value across our portfolio of
+                            investments and operating businesses.
+                        </p>
+                    </div>
+                    <div class="about-principles fade-in delay-1">
+                        <div class="principle">
+                            <h3>Long-Term Focus</h3>
+                            <p>We prioritize sustainable growth over short-term gains, building value that endures.</p>
+                        </div>
+                        <div class="principle">
+                            <h3>Disciplined Capital</h3>
+                            <p>Every investment decision is grounded in rigorous analysis and rational judgment.</p>
+                        </div>
+                        <div class="principle">
+                            <h3>Operational Integration</h3>
+                            <p>We bridge the gap between investment strategy and operational execution.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="business" class="section business">
+        <!-- Business Section -->
+        <section id="business" class="section section--alt">
             <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">Business</h2>
-                    <p class="section-desc">Core Operations</p>
+                <div class="section-header fade-in">
+                    <span class="section-label">Business</span>
+                    <h2 class="section-title">Our Operations</h2>
                 </div>
-                <div class="card-grid">
-                    <div class="card fade-up">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <div class="business-grid">
+                    <!-- Investment -->
+                    <div class="business-card fade-in">
+                        <div class="business-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="business-card-title">Crypto Assets</h3>
+                        <p class="business-card-text">
+                            Strategic investment in digital assets with a focus on long-term value
+                            and emerging blockchain technologies.
+                        </p>
+                    </div>
+                    <div class="business-card fade-in delay-1">
+                        <div class="business-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="business-card-title">US Equities</h3>
+                        <p class="business-card-text">
+                            Disciplined investment in the US equity market, seeking intrinsic value
+                            and compounding returns over time.
+                        </p>
+                    </div>
+                    <!-- Business Operations -->
+                    <div class="business-card fade-in delay-1">
+                        <div class="business-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="business-card-title">Subsidiary Management</h3>
+                        <p class="business-card-text">
+                            Overseeing and supporting group companies to maximize operational
+                            efficiency and drive strategic growth.
+                        </p>
+                    </div>
+                    <div class="business-card fade-in delay-2">
+                        <div class="business-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                                 <line x1="8" y1="21" x2="16" y2="21"></line>
                                 <line x1="12" y1="17" x2="12" y2="21"></line>
-                                <polyline points="7 10 10 13 17 6"></polyline>
                             </svg>
                         </div>
-                        <h3 class="card-title">IT Solutions</h3>
-                        <p class="card-text">
-                            We provide Web System Development, Application Development, and SES (System Engineering
-                            Service).
-                            By adopting the latest tech trends, we support clients' DX promotion and business growth
-                            from a technical perspective.
+                        <h3 class="business-card-title">IT / AI / Development</h3>
+                        <p class="business-card-text">
+                            Providing technology solutions through AI integration, system
+                            engineering services, and contract development via our subsidiaries.
                         </p>
                     </div>
-                    <div class="card fade-up delay-1">
-                        <div class="card-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="1" x2="12" y2="23"></line>
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    <!-- Future -->
+                    <a href="real-estate.html" class="business-card business-card--link fade-in delay-2">
+                        <div class="business-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
                         </div>
-                        <h3 class="card-title">Asset Management</h3>
-                        <p class="card-text">
-                            Investment operations focused on Blockchain Technology (Crypto assets, DeFi, L2) and the US
-                            Equity Market.
-                            We combine technological and financial insights for long-term asset formation and risk
-                            management.
+                        <h3 class="business-card-title">Real Estate Investment</h3>
+                        <p class="business-card-text">
+                            Expanding into real estate to build a resilient, diversified asset
+                            portfolio with stable cash flow.
                         </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="group" class="section group">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">Group</h2>
-                    <p class="section-desc">Subsidiaries</p>
-                </div>
-                <div class="group-list">
-                    <a href="https://nispatch.com/" target="_blank" rel="noopener noreferrer"
-                        class="group-item fade-up delay-1">
-                        <div class="group-info">
-                            <h3>Nispatch Inc. <span class="external-link">↗</span></h3>
-                            <p class="group-tag">IT / HR / Education</p>
-                            <p>Specializing in IT Engineering, Contract Development, and Programming Education services.
-                            </p>
-                        </div>
+                        <span class="business-card-link-label">View Details →</span>
                     </a>
-                    <a href="https://bladun.com/" target="_blank" rel="noopener noreferrer"
-                        class="group-item fade-up delay-1">
-                        <div class="group-info">
-                            <h3>BlaDun Inc. <span class="external-link">↗</span></h3>
-                            <p class="group-tag">Sports / Event / Apparel</p>
-                            <p>Operating Basketball Events, Club Teams, Schools, and an original Apparel brand.</p>
+                    <a href="corporate-development.html" class="business-card business-card--link fade-in delay-3">
+                        <div class="business-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
                         </div>
+                        <h3 class="business-card-title">Corporate Development</h3>
+                        <p class="business-card-text">
+                            Pursuing strategic opportunities to accelerate growth and
+                            expand our operational capabilities through business succession.
+                        </p>
+                        <span class="business-card-link-label">View Details →</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="company" class="section company">
+        <!-- Group Structure Section -->
+        <section id="group" class="section">
             <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">Company Profile</h2>
+                <div class="section-header fade-in">
+                    <span class="section-label">Group</span>
+                    <h2 class="section-title">Group Structure</h2>
                 </div>
-                <div class="company-table fade-up">
-                    <dl>
-                        <dt>Company Name</dt>
-                        <dd>alvavinci LLC</dd>
-                    </dl>
-                    <dl>
-                        <dt>Head Office</dt>
-                        <dd>Oita City, Oita, Japan</dd>
-                    </dl>
-                    <dl>
-                        <dt>Main Business</dt>
-                        <dd>System Development / Asset Management</dd>
-                    </dl>
+                <div class="group-structure fade-in">
+                    <!-- Parent Company -->
+                    <div class="group-parent">
+                        <div class="group-node group-node--parent">
+                            <h3>alvavinci LLC</h3>
+                            <p>Holding Company</p>
+                        </div>
+                        <div class="group-connector"></div>
+                    </div>
+                    <!-- Subsidiaries -->
+                    <div class="group-children">
+                        <div class="group-child fade-in delay-1">
+                            <div class="group-node">
+                                <h3>Nispatch Inc.</h3>
+                                <ul>
+                                    <li>IT / AI / SES</li>
+                                    <li>Contract Development</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="group-child fade-in delay-2">
+                            <div class="group-node">
+                                <h3>Nocolle Inc.</h3>
+                                <ul>
+                                    <li>New Business Platform</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section contact">
-            <div class="container fade-up">
-                <h2 class="contact-title">Contact Us</h2>
-                <p class="contact-text">For business inquiries or career opportunities, please contact us via the form
-                    below.</p>
-                <a href="https://forms.gle/5u4DZcPXPveqfac79" target="_blank" rel="noopener noreferrer"
-                    class="btn-contact">Inquiry Form</a>
+        <!-- Vision Section -->
+        <section id="vision" class="section section--alt">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-label">Vision</span>
+                    <h2 class="section-title">Our Vision</h2>
+                </div>
+                <div class="vision-content">
+                    <div class="vision-statement fade-in">
+                        <p class="vision-lead">
+                            We aim to build a diversified and resilient portfolio that generates
+                            sustainable value across market cycles.
+                        </p>
+                    </div>
+                    <div class="vision-grid">
+                        <div class="vision-item fade-in">
+                            <span class="vision-number">01</span>
+                            <h3>Capital Efficiency</h3>
+                            <p>Maximizing returns through disciplined allocation and continuous optimization of our capital base.</p>
+                        </div>
+                        <div class="vision-item fade-in delay-1">
+                            <span class="vision-number">02</span>
+                            <h3>Portfolio Diversification</h3>
+                            <p>Building resilience through strategic diversification across asset classes and business operations.</p>
+                        </div>
+                        <div class="vision-item fade-in delay-1">
+                            <span class="vision-number">03</span>
+                            <h3>Strategic Expansion</h3>
+                            <p>Expanding into real estate and corporate development to broaden our operational footprint and revenue streams.</p>
+                        </div>
+                        <div class="vision-item fade-in delay-2">
+                            <span class="vision-number">04</span>
+                            <h3>Stability & Growth</h3>
+                            <p>Balancing the pursuit of growth with the discipline required to maintain long-term stability.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Message Section -->
+        <section id="message" class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-label">Message</span>
+                    <h2 class="section-title">Representative Message</h2>
+                </div>
+                <div class="message-content fade-in">
+                    <blockquote class="message-quote">
+                        <p>
+                            We believe that true value is built through patience, discipline,
+                            and a commitment to rational decision-making. In a world driven by
+                            short-term thinking and market noise, we choose to focus on what
+                            endures: intrinsic value.
+                        </p>
+                        <p>
+                            At alvavinci, we integrate capital allocation with operational
+                            execution. Our investment philosophy is not about chasing the next
+                            trend, but about identifying durable advantages and compounding them
+                            over time.
+                        </p>
+                        <p>
+                            We manage our businesses and investments with the same long-term
+                            perspective. Every decision is weighed against its contribution to
+                            sustainable growth. This discipline is the foundation of everything
+                            we do.
+                        </p>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p class="copyright">&copy; 2025 alvavinci LLC. All Rights Reserved.</p>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">alvavinci</a>
+                <p class="footer-tagline">Building long-term value through business and capital.</p>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Top</a></li>
+                    <li><a href="real-estate.html">Real Estate</a></li>
+                    <li><a href="corporate-development.html">Corporate Development</a></li>
+                </ul>
+            </nav>
+            <p class="footer-copyright">&copy; 2025 alvavinci LLC. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="./js/index.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
