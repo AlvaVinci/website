@@ -1232,3 +1232,123 @@ button {
         margin-bottom: 32px;
     }
 }
+
+/* ============================================
+   Media Page
+   ============================================ */
+.media-brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.media-brand-card {
+    padding: 0;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.media-brand-visual {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    background: var(--color-bg-alt);
+    overflow: hidden;
+}
+
+.media-brand-visual-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.media-brand-header,
+.media-brand-text,
+.media-brand-link {
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.media-brand-header {
+    margin-top: 28px;
+    margin-bottom: 24px;
+}
+
+.media-brand-badge {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 4px 12px;
+    border: 1px solid var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.media-brand-card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.media-brand-handle {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+}
+
+.media-brand-text {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.media-brand-link {
+    display: inline-block;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 32px;
+}
+
+.media-brand-link:hover {
+    color: var(--color-accent);
+}
+
+.media-link-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 1024px) {
+    .media-brand-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .media-brand-card {
+        padding: 0;
+    }
+
+    .media-brand-header,
+    .media-brand-text,
+    .media-brand-link {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    .media-link-stack {
+        width: 100%;
+    }
+
+    .media-link-stack .btn--form {
+        width: 100%;
+        justify-content: center;
+    }
+}
