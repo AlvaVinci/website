@@ -580,7 +580,7 @@ button {
 
 .group-children {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 32px;
     position: relative;
 }
@@ -589,8 +589,8 @@ button {
     content: '';
     position: absolute;
     top: 0;
-    left: 16.666%;
-    width: 66.666%;
+    left: 25%;
+    width: 50%;
     height: 1px;
     background: var(--color-border);
 }
