@@ -1477,9 +1477,6 @@ button {
         gap: 20px;
     }
 
-    .ai-org-inline-team {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 /* M&A/CD Responsive — Mobile */
