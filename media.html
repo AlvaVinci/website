@@ -183,6 +183,7 @@
                             変化の速い領域だからこそ、継続的に追える発信設計を重視しています。
                         </p>
                         <a href="https://x.com/signal_techai" target="_blank" rel="noopener noreferrer"
+                            data-x-handle="signal_techai"
                             class="media-brand-link">SIGNAL on X</a>
                     </article>
                     <article class="media-brand-card">
@@ -201,6 +202,7 @@
                             読み手にとって実用的で、継続的に接点を持てる運営を目指しています。
                         </p>
                         <a href="https://x.com/skinlab_jp" target="_blank" rel="noopener noreferrer"
+                            data-x-handle="skinlab_jp"
                             class="media-brand-link">SKINLAB on X</a>
                     </article>
                     <article class="media-brand-card">
@@ -219,6 +221,7 @@
                             日々の感情に名前を与えながら、共感されるキャラクターを継続的に育てていきます。
                         </p>
                         <a href="https://x.com/emomon_jp" target="_blank" rel="noopener noreferrer"
+                            data-x-handle="emomon_jp"
                             class="media-brand-link">emomon on X</a>
                     </article>
                 </div>
@@ -323,6 +326,52 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        (function () {
+            var isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+            var isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+
+            if (!isMobileViewport || !isTouchDevice) {
+                return;
+            }
+
+            function openXApp(handle, webUrl) {
+                var fallbackTimer = window.setTimeout(function () {
+                    window.location.href = webUrl;
+                }, 1200);
+
+                function clearFallback() {
+                    window.clearTimeout(fallbackTimer);
+                    document.removeEventListener('visibilitychange', handleVisibilityChange);
+                    window.removeEventListener('pagehide', clearFallback);
+                }
+
+                function handleVisibilityChange() {
+                    if (document.hidden) {
+                        clearFallback();
+                    }
+                }
+
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+                window.addEventListener('pagehide', clearFallback);
+                window.location.href = 'twitter://user?screen_name=' + encodeURIComponent(handle);
+            }
+
+            document.querySelectorAll('.media-brand-link[data-x-handle]').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    var handle = link.getAttribute('data-x-handle');
+                    var webUrl = link.getAttribute('href');
+
+                    if (!handle || !webUrl) {
+                        return;
+                    }
+
+                    event.preventDefault();
+                    openXApp(handle, webUrl);
+                });
+            });
+        }());
+    </script>
 </body>
 
 </html>
