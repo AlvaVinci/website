@@ -666,7 +666,7 @@ button {
 .ai-org-branches {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 24px;
     padding-top: 34px;
 }
@@ -675,10 +675,14 @@ button {
     content: '';
     position: absolute;
     top: 0;
-    left: 12.5%;
-    width: 75%;
+    left: 10%;
+    width: 70%;
     height: 1px;
     background: var(--color-border);
+}
+
+.ai-org-branch--media {
+    grid-column: span 2;
 }
 
 .ai-org-branch {
@@ -753,7 +757,7 @@ button {
 
 .ai-org-inline-team {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
     margin-top: 20px;
     padding-top: 20px;
@@ -1471,6 +1475,10 @@ button {
     .cd-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .ai-org-inline-team {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
