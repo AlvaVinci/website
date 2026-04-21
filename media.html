@@ -336,55 +336,25 @@
             }
 
             function openXApp(handle, webUrl) {
-                var iframe = document.createElement('iframe');
-                var hasLeftPage = false;
-                var fallbackTimer = null;
+                var fallbackTimer = window.setTimeout(function () {
+                    window.location.href = webUrl;
+                }, 1200);
 
-                iframe.setAttribute('aria-hidden', 'true');
-                iframe.style.display = 'none';
-
-                function cleanup() {
-                    if (fallbackTimer) {
-                        window.clearTimeout(fallbackTimer);
-                    }
+                function clearFallback() {
+                    window.clearTimeout(fallbackTimer);
                     document.removeEventListener('visibilitychange', handleVisibilityChange);
-                    window.removeEventListener('blur', handleWindowBlur);
                     window.removeEventListener('pagehide', clearFallback);
-                    if (iframe.parentNode) {
-                        iframe.parentNode.removeChild(iframe);
-                    }
                 }
 
                 function handleVisibilityChange() {
                     if (document.hidden) {
-                        hasLeftPage = true;
-                        cleanup();
+                        clearFallback();
                     }
-                }
-
-                function handleWindowBlur() {
-                    hasLeftPage = true;
-                    cleanup();
-                }
-
-                function clearFallback() {
-                    hasLeftPage = true;
-                    cleanup();
                 }
 
                 document.addEventListener('visibilitychange', handleVisibilityChange);
-                window.addEventListener('blur', handleWindowBlur);
                 window.addEventListener('pagehide', clearFallback);
-
-                document.body.appendChild(iframe);
-                iframe.src = 'twitter://user?screen_name=' + encodeURIComponent(handle);
-
-                fallbackTimer = window.setTimeout(function () {
-                    if (!hasLeftPage) {
-                        cleanup();
-                        window.location.href = webUrl;
-                    }
-                }, 1200);
+                window.location.href = 'twitter://user?screen_name=' + encodeURIComponent(handle);
             }
 
             document.querySelectorAll('.media-brand-link[data-x-handle]').forEach(function (link) {
