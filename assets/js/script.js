@@ -16,32 +16,37 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    if (header) {
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+        handleHeaderScroll();
+    }
 
     /* --- Mobile menu toggle --- */
     var hamburger = document.getElementById('hamburger');
     var nav = document.getElementById('nav');
     var navLinks = document.querySelectorAll('.nav-link');
 
-    function toggleMenu() {
-        var isActive = hamburger.classList.toggle('active');
-        nav.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', isActive);
-        document.body.style.overflow = isActive ? 'hidden' : '';
+    if (hamburger && nav) {
+        function toggleMenu() {
+            var isActive = hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+        });
     }
-
-    function closeMenu() {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-
-    navLinks.forEach(function (link) {
-        link.addEventListener('click', closeMenu);
-    });
 
     /* --- Smooth scrolling --- */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -54,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             e.preventDefault();
 
-            var headerHeight = header.offsetHeight;
+            var headerHeight = header ? header.offsetHeight : 0;
             var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
 
             window.scrollTo({
@@ -117,14 +122,13 @@ document.addEventListener('DOMContentLoaded', function () {
         var CONNECTION_DIST = 150;
         var PARALLAX_AMOUNT = 15;
 
-        /* --- Colors (purple palette, matches --color-accent: #574a80) --- */
-        var COL_GRID = 'rgba(87, 74, 128, 0.06)';
-        var COL_ARC = 'rgba(45, 33, 80, 0.08)';
-        var COL_CHART = 'rgba(87, 74, 128, 0.25)';
-        var COL_PARTICLE_BASE = [87, 74, 128];
-        var COL_NODE = 'rgba(87, 74, 128, 0.5)';
-        var COL_NODE_GLOW = 'rgba(87, 74, 128, 0.15)';
-        var COL_CONNECTION = 'rgba(87, 74, 128, 0.08)';
+        var COL_GRID = 'rgba(58, 109, 240, 0.06)';
+        var COL_ARC = 'rgba(24, 199, 223, 0.16)';
+        var COL_CHART = 'rgba(58, 109, 240, 0.22)';
+        var COL_PARTICLE_BASE = [24, 199, 223];
+        var COL_NODE = 'rgba(58, 109, 240, 0.46)';
+        var COL_NODE_GLOW = 'rgba(24, 199, 223, 0.18)';
+        var COL_CONNECTION = 'rgba(58, 109, 240, 0.1)';
 
         /* --- Entity arrays --- */
         var particles = [];
@@ -136,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function resize() {
             var rect = canvas.parentElement.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
             w = rect.width;
             h = rect.height;
             canvas.width = w * dpr;
@@ -319,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (dist < CONNECTION_DIST) {
                         var opacity = (1 - dist / CONNECTION_DIST) * 0.12;
-                        ctx.strokeStyle = 'rgba(87, 74, 128, ' + opacity.toFixed(3) + ')';
+                        ctx.strokeStyle = 'rgba(58, 109, 240, ' + opacity.toFixed(3) + ')';
                         ctx.beginPath();
                         ctx.moveTo(n.x + px, n.y + py);
                         ctx.lineTo(n2.x + px, n2.y + py);
