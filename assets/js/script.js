@@ -27,21 +27,31 @@ document.addEventListener('DOMContentLoaded', function () {
     var navLinks = document.querySelectorAll('.nav-link');
 
     if (hamburger && nav) {
+        var isEnglish = document.documentElement.lang === 'en';
+
+        function setMenuState(isOpen) {
+            hamburger.classList.toggle('active', isOpen);
+            nav.classList.toggle('active', isOpen);
+            document.body.classList.toggle('nav-open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            hamburger.setAttribute('aria-label', isOpen ? (isEnglish ? 'Close menu' : 'メニューを閉じる') : (isEnglish ? 'Open menu' : 'メニューを開く'));
+        }
+
         function toggleMenu() {
-            var isActive = hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', isActive);
-            document.body.style.overflow = isActive ? 'hidden' : '';
+            setMenuState(!hamburger.classList.contains('active'));
         }
 
         function closeMenu() {
-            hamburger.classList.remove('active');
-            nav.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+            setMenuState(false);
         }
 
         hamburger.addEventListener('click', toggleMenu);
+        nav.addEventListener('click', function (e) {
+            if (e.target === nav) closeMenu();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeMenu();
+        });
 
         navLinks.forEach(function (link) {
             link.addEventListener('click', closeMenu);
@@ -78,18 +88,24 @@ document.addEventListener('DOMContentLoaded', function () {
         threshold: 0.1
     };
 
-    var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-    fadeElements.forEach(function (el) {
-        observer.observe(el);
-    });
+        fadeElements.forEach(function (el) {
+            observer.observe(el);
+        });
+    } else {
+        fadeElements.forEach(function (el) {
+            el.classList.add('visible');
+        });
+    }
 
     /* ============================================
        Hero Canvas Animation
@@ -99,13 +115,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
         var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
         var dpr = window.devicePixelRatio || 1;
         var w = 0;
         var h = 0;
         var animId = null;
         var lastTime = 0;
         var elapsed = 0;
-        var paused = false;
+        var pageVisible = !document.hidden;
+        var canvasVisible = true;
 
         /* --- Mouse tracking --- */
         var mouseX = 0.5;
@@ -355,12 +374,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         /* --- Main animation loop --- */
         function animate(timestamp) {
-            if (paused) {
-                animId = requestAnimationFrame(animate);
-                lastTime = timestamp;
-                return;
-            }
-
             if (!lastTime) lastTime = timestamp;
             var dt = Math.min(timestamp - lastTime, 50);
             lastTime = timestamp;
@@ -380,6 +393,33 @@ document.addEventListener('DOMContentLoaded', function () {
             animId = requestAnimationFrame(animate);
         }
 
+        function shouldAnimate() {
+            return pageVisible && canvasVisible;
+        }
+
+        function startAnimation() {
+            if (!animId && shouldAnimate()) {
+                lastTime = 0;
+                animId = requestAnimationFrame(animate);
+            }
+        }
+
+        function stopAnimation() {
+            if (animId) {
+                cancelAnimationFrame(animId);
+                animId = null;
+                lastTime = 0;
+            }
+        }
+
+        function syncAnimationState() {
+            if (shouldAnimate()) {
+                startAnimation();
+            } else {
+                stopAnimation();
+            }
+        }
+
         /* --- Event listeners --- */
         canvas.parentElement.addEventListener('mousemove', function (e) {
             var rect = canvas.parentElement.getBoundingClientRect();
@@ -392,17 +432,27 @@ document.addEventListener('DOMContentLoaded', function () {
             targetMouseY = 0.5;
         });
 
-        /* Page Visibility API */
         document.addEventListener('visibilitychange', function () {
-            paused = document.hidden;
+            pageVisible = !document.hidden;
+            syncAnimationState();
         });
+
+        if ('IntersectionObserver' in window) {
+            var canvasObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    canvasVisible = entry.isIntersecting;
+                    syncAnimationState();
+                });
+            }, { threshold: 0.01 });
+            canvasObserver.observe(canvas);
+        }
 
         window.addEventListener('resize', handleResize, { passive: true });
 
         /* --- Initialize --- */
         resize();
         initEntities();
-        animId = requestAnimationFrame(animate);
+        startAnimation();
     }
 
 });
