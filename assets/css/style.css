@@ -52,10 +52,20 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body.nav-open {
+    overflow: hidden;
+}
+
 a {
     color: inherit;
     text-decoration: none;
     transition: color var(--transition), border-color var(--transition), background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(58, 109, 240, 0.42);
+    outline-offset: 4px;
 }
 
 ul {
@@ -65,6 +75,10 @@ ul {
 img {
     display: block;
     max-width: 100%;
+}
+
+picture {
+    display: block;
 }
 
 button {
@@ -247,6 +261,8 @@ button {
     font-size: 0.92rem;
     font-weight: 700;
     line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
 }
 
 .btn--primary {
@@ -744,9 +760,15 @@ button {
     min-height: 260px;
 }
 
+.business-card--link:focus-visible {
+    outline: 3px solid rgba(58, 109, 240, 0.42);
+    outline-offset: 4px;
+}
+
 .business-card-icon {
     display: inline-flex;
     min-width: 46px;
+    max-width: 100%;
     height: 46px;
     align-items: center;
     justify-content: center;
@@ -757,6 +779,7 @@ button {
     font-size: 0.82rem;
     font-weight: 800;
     padding: 0 10px;
+    white-space: nowrap;
 }
 
 .business-card-title {
@@ -1262,6 +1285,13 @@ button {
     object-fit: cover;
 }
 
+.sora-portrait-card picture,
+.sora-portrait-card img,
+.media-brand-visual picture {
+    width: 100%;
+    height: 100%;
+}
+
 .media-brand-header,
 .media-brand-text,
 .media-brand-link {
@@ -1309,11 +1339,13 @@ button {
     opacity: 0;
     transform: translateY(22px);
     transition: opacity 0.68s ease, transform 0.68s ease;
+    will-change: opacity, transform;
 }
 
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+    will-change: auto;
 }
 
 .delay-1 {
