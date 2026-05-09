@@ -1,12 +1,13 @@
 # alvavinci corporate-site
 
 `alvavinci.com` 向けの静的コーポレートサイトです。  
-ビルド工程を持たない HTML / CSS / JavaScript 構成で、トップページと各事業紹介ページを個別の HTML として管理しています。
+ビルド工程を持たない HTML / CSS / JavaScript 構成で、日本語・英語のトップページと各事業紹介ページを個別の HTML として管理しています。
 
 ## 概要
 
 - ルートの `index.html` がトップページです
-- 下層ページとして `real-estate.html`、`corporate-development.html`、`media.html`、`sora-intelligence.html` を持ちます
+- 下層ページとして `real-estate.html`、`corporate-development.html`、`media.html`、`sora-intelligence.html`、`novel.html` を持ちます
+- 英語版ページは `en/` 配下に配置しています
 - 共通スタイルは `assets/css/style.css`、共通挙動は `assets/js/script.js` に集約されています
 - 各ページに SEO 用メタタグ、OGP、構造化データ、Google Analytics を直接埋め込んでいます
 - 画像やアイコンは `assets/` とルート直下の favicon / OGP 画像で管理しています
@@ -20,6 +21,8 @@
 | `corporate-development.html` | 事業開発 / 事業承継ページ |
 | `media.html` | メディア事業ページ。X ブランド紹介を掲載 |
 | `sora-intelligence.html` | AI事業部ページ |
+| `novel.html` | Novel事業 / Epochページ |
+| `en/*.html` | 英語版ページ |
 
 ## 主要ファイル
 
@@ -54,6 +57,7 @@ python3 -m http.server 8000
 
 - 共通 UI 変更はまず `assets/css/style.css` と `assets/js/script.js` への影響を確認してください
 - 各ページの `head` にはタイトル、description、canonical、OGP、構造化データがあるため、ページ追加や文言変更時は本文だけでなく `head` も合わせて更新してください
+- 日英ページは `hreflang` とヘッダーの言語切り替えリンクを相互に更新してください
 - ナビゲーションとフッターのリンクは各 HTML に重複しているため、導線変更時は関連ページを横断して反映が必要です
 - 画像差し替え時は、パスだけでなく `alt`、`width`、`height` の整合も保ってください
 - `sitemap.xml` の `lastmod` は公開更新に合わせて見直してください
