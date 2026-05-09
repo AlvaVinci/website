@@ -1137,6 +1137,48 @@ button {
     margin-top: 16px;
 }
 
+/* Novel page */
+.novel-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.72fr);
+    gap: 56px;
+    align-items: center;
+}
+
+.novel-hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+}
+
+.novel-hero-visual::before {
+    position: absolute;
+    inset: 2% 0 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.78), rgba(237, 247, 255, 0.5) 44%, rgba(24, 199, 223, 0.1) 68%, transparent 80%);
+    content: '';
+    filter: blur(10px);
+}
+
+.novel-hero-visual picture {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: min(100%, 390px);
+    aspect-ratio: 1 / 1;
+    background: transparent;
+    overflow: visible;
+}
+
+.novel-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: saturate(0.88) brightness(1.08) contrast(0.98) drop-shadow(0 28px 52px rgba(58, 109, 240, 0.2));
+}
+
 .ai-org-chart {
     position: relative;
 }
@@ -1398,7 +1440,8 @@ button {
     .hero-inner,
     .split-section,
     .message-layout,
-    .sora-hero .container {
+    .sora-hero .container,
+    .novel-hero-inner {
         grid-template-columns: 1fr;
     }
 
@@ -1528,6 +1571,36 @@ button {
 
     .alvin-card {
         width: min(100%, 280px);
+    }
+
+    .novel-hero-inner {
+        position: relative;
+    }
+
+    .novel-hero .ma-hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .novel-hero-visual {
+        position: absolute;
+        right: -80px;
+        bottom: -36px;
+        z-index: 0;
+        width: 280px;
+        min-height: 280px;
+        opacity: 0.18;
+        pointer-events: none;
+    }
+
+    .novel-hero-visual::before {
+        inset: -8%;
+        opacity: 0.72;
+        filter: blur(14px);
+    }
+
+    .novel-hero-visual picture {
+        width: 100%;
     }
 
     .agent-status {
