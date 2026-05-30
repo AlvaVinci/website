@@ -17,7 +17,7 @@
 | ファイル | 役割 |
 | --- | --- |
 | `index.html` | 日本語トップページ。AIエージェントを中心とした業務設計、事業一覧、グループ体制、メッセージを掲載 |
-| `real-estate.html` | 不動産投資ページ |
+| `real-estate.html` | 不動産・空間活用ページ |
 | `corporate-development.html` | 事業開発 / 事業承継ページ |
 | `media.html` | メディア事業ページ。X ブランド紹介を掲載 |
 | `sora-intelligence.html` | AI事業部ページ |
