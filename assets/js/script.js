@@ -1,458 +1,286 @@
-/* ============================================
-   alvavinci LLC — Landing Page Scripts
-   Vanilla JavaScript only
-   ============================================ */
+/* =====================================================================
+   alvavinci LLC — corporate site
+   共通スクリプト
+     1. ヘッダーのスクロール状態
+     2. モバイルドロワー
+     3. スクロールリビール
+     4. 高電圧アーク (Canvas) の描画
+   外部ライブラリには依存しない。
+   ===================================================================== */
+(function () {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* --- Header scroll effect --- */
+    /* -----------------------------------------------------------------
+       1. ヘッダー: スクロール量に応じて背景を出す
+       ----------------------------------------------------------------- */
     var header = document.getElementById('header');
-
-    function handleHeaderScroll() {
-        if (window.scrollY > 10) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }
-
     if (header) {
-        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-        handleHeaderScroll();
+        var onScroll = function () {
+            header.classList.toggle('is-stuck', window.scrollY > 24);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
     }
 
-    /* --- Mobile menu toggle --- */
-    var hamburger = document.getElementById('hamburger');
-    var nav = document.getElementById('nav');
-    var navLinks = document.querySelectorAll('.nav-link');
+    /* -----------------------------------------------------------------
+       2. モバイルドロワー
+       ----------------------------------------------------------------- */
+    var burger = document.getElementById('hamburger');
+    var drawer = document.getElementById('drawer');
 
-    if (hamburger && nav) {
-        var isEnglish = document.documentElement.lang === 'en';
+    if (burger && drawer) {
+        var setDrawer = function (open) {
+            burger.setAttribute('aria-expanded', String(open));
+            burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+            drawer.classList.toggle('is-open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        };
 
-        function setMenuState(isOpen) {
-            hamburger.classList.toggle('active', isOpen);
-            nav.classList.toggle('active', isOpen);
-            document.body.classList.toggle('nav-open', isOpen);
-            hamburger.setAttribute('aria-expanded', String(isOpen));
-            hamburger.setAttribute('aria-label', isOpen ? (isEnglish ? 'Close menu' : 'メニューを閉じる') : (isEnglish ? 'Open menu' : 'メニューを開く'));
-        }
-
-        function toggleMenu() {
-            setMenuState(!hamburger.classList.contains('active'));
-        }
-
-        function closeMenu() {
-            setMenuState(false);
-        }
-
-        hamburger.addEventListener('click', toggleMenu);
-        nav.addEventListener('click', function (e) {
-            if (e.target === nav) closeMenu();
+        burger.addEventListener('click', function () {
+            setDrawer(burger.getAttribute('aria-expanded') !== 'true');
         });
+
+        drawer.addEventListener('click', function (e) {
+            if (e.target.closest('a')) { setDrawer(false); }
+        });
+
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeMenu();
+            if (e.key === 'Escape') { setDrawer(false); }
         });
 
-        navLinks.forEach(function (link) {
-            link.addEventListener('click', closeMenu);
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) { setDrawer(false); }
         });
     }
 
-    /* --- Smooth scrolling --- */
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-            var targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+    /* -----------------------------------------------------------------
+       3. スクロールリビール
+       ----------------------------------------------------------------- */
+    var targets = document.querySelectorAll('.reveal');
 
-            var target = document.querySelector(targetId);
-            if (!target) return;
-
-            e.preventDefault();
-
-            var headerHeight = header ? header.offsetHeight : 0;
-            var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    /* --- Scroll-based fade-in animations --- */
-    var fadeElements = document.querySelectorAll('.fade-in');
-
-    var observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -60px 0px',
-        threshold: 0.1
-    };
-
-    if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+        Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-in'); });
+    } else {
+        var io = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('is-in');
+                    io.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
 
-        fadeElements.forEach(function (el) {
-            observer.observe(el);
-        });
-    } else {
-        fadeElements.forEach(function (el) {
-            el.classList.add('visible');
-        });
+        Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
     }
 
-    /* ============================================
-       Hero Canvas Animation
-       ============================================ */
-    var canvas = document.getElementById('heroCanvas');
+    /* -----------------------------------------------------------------
+       4. 高電圧アーク
+       data-arc 属性を持つ canvas を初期化する。
+         data-origin-x / data-origin-y : 放電の起点 (0〜1 の相対座標)
+         data-intensity                : 放電の量 (0.4〜1.4 程度)
+       ----------------------------------------------------------------- */
+    var canvases = document.querySelectorAll('canvas[data-arc]');
+    if (!canvases.length) { return; }
 
-    if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
+    Array.prototype.forEach.call(canvases, function (canvas) {
         var ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        if (!ctx) { return; }
 
-        var dpr = window.devicePixelRatio || 1;
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
         var w = 0;
         var h = 0;
-        var animId = null;
-        var lastTime = 0;
-        var elapsed = 0;
-        var pageVisible = !document.hidden;
-        var canvasVisible = true;
+        var bolts = [];
+        var motes = [];
+        var origin = { x: 0, y: 0 };
+        var intensity = parseFloat(canvas.getAttribute('data-intensity')) || 1;
+        var ox = parseFloat(canvas.getAttribute('data-origin-x'));
+        var oy = parseFloat(canvas.getAttribute('data-origin-y'));
+        var nextBoltAt = 0;
+        var rafId = null;
 
-        /* --- Mouse tracking --- */
-        var mouseX = 0.5;
-        var mouseY = 0.5;
-        var targetMouseX = 0.5;
-        var targetMouseY = 0.5;
+        if (isNaN(ox)) { ox = 0.78; }
+        if (isNaN(oy)) { oy = 0.42; }
 
-        /* --- Configuration --- */
-        var isMobile = window.innerWidth <= 768;
-        var GRID_SPACING = 40;
-        var PARTICLE_COUNT = isMobile ? 18 : 30;
-        var NODE_COUNT = isMobile ? 5 : 7;
-        var ARC_COUNT = 3;
-        var CONNECTION_DIST = 150;
-        var PARALLAX_AMOUNT = 15;
-
-        var COL_GRID = 'rgba(58, 109, 240, 0.06)';
-        var COL_ARC = 'rgba(24, 199, 223, 0.16)';
-        var COL_CHART = 'rgba(58, 109, 240, 0.22)';
-        var COL_PARTICLE_BASE = [24, 199, 223];
-        var COL_NODE = 'rgba(58, 109, 240, 0.46)';
-        var COL_NODE_GLOW = 'rgba(24, 199, 223, 0.18)';
-        var COL_CONNECTION = 'rgba(58, 109, 240, 0.1)';
-
-        /* --- Entity arrays --- */
-        var particles = [];
-        var nodes = [];
-        var arcs = [];
-
-        /* --- Resize handler --- */
-        var resizeTimer = null;
-
+        /* 画面サイズに追従 */
         function resize() {
-            var rect = canvas.parentElement.getBoundingClientRect();
-            if (!rect.width || !rect.height) return;
-            w = rect.width;
-            h = rect.height;
-            canvas.width = w * dpr;
-            canvas.height = h * dpr;
-            canvas.style.width = w + 'px';
-            canvas.style.height = h + 'px';
+            var rect = canvas.getBoundingClientRect();
+            w = Math.max(rect.width, 1);
+            h = Math.max(rect.height, 1);
+            canvas.width = Math.floor(w * dpr);
+            canvas.height = Math.floor(h * dpr);
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            origin.x = w * ox;
+            origin.y = h * oy;
+            seedMotes();
         }
 
-        function handleResize() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function () {
-                isMobile = window.innerWidth <= 768;
-                PARTICLE_COUNT = isMobile ? 18 : 30;
-                NODE_COUNT = isMobile ? 5 : 7;
-                resize();
-                initEntities();
-            }, 250);
-        }
-
-        /* --- Entity creation --- */
-        function createParticle() {
-            return {
-                x: Math.random() * w,
-                y: Math.random() * h,
-                vx: (Math.random() - 0.5) * 0.3,
-                vy: (Math.random() - 0.5) * 0.3,
-                r: 1 + Math.random() * 1.5,
-                baseAlpha: 0.12 + Math.random() * 0.18,
-                phase: Math.random() * Math.PI * 2
-            };
-        }
-
-        function createNode() {
-            return {
-                x: w * 0.15 + Math.random() * w * 0.7,
-                y: h * 0.15 + Math.random() * h * 0.7,
-                vx: (Math.random() - 0.5) * 0.15,
-                vy: (Math.random() - 0.5) * 0.15,
-                r: 3 + Math.random() * 2
-            };
-        }
-
-        function createArc(index) {
-            return {
-                cx: w * (0.3 + index * 0.2),
-                cy: h * (0.3 + index * 0.15),
-                radius: 60 + index * 40,
-                startAngle: Math.random() * Math.PI * 2,
-                sweep: Math.PI * 0.5 + Math.random() * Math.PI * 0.5,
-                speed: 0.0003 + Math.random() * 0.0003,
-                direction: index % 2 === 0 ? 1 : -1
-            };
-        }
-
-        function initEntities() {
-            var i;
-            particles = [];
-            nodes = [];
-            arcs = [];
-
-            for (i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push(createParticle());
-            }
-            for (i = 0; i < NODE_COUNT; i++) {
-                nodes.push(createNode());
-            }
-            for (i = 0; i < ARC_COUNT; i++) {
-                arcs.push(createArc(i));
+        /* 漂う微粒子 (帯電した塵) */
+        function seedMotes() {
+            var count = Math.round((w * h) / 34000 * intensity);
+            motes = [];
+            for (var i = 0; i < count; i++) {
+                motes.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 1.1 + 0.25,
+                    vx: (Math.random() - 0.5) * 0.13,
+                    vy: -Math.random() * 0.16 - 0.02,
+                    a: Math.random() * 0.4 + 0.12
+                });
             }
         }
 
-        /* --- Drawing functions --- */
-        function drawGrid() {
-            ctx.fillStyle = COL_GRID;
-            var px = (mouseX - 0.5) * PARALLAX_AMOUNT * 0.3;
-            var py = (mouseY - 0.5) * PARALLAX_AMOUNT * 0.3;
-            var cols = Math.ceil(w / GRID_SPACING) + 1;
-            var rows = Math.ceil(h / GRID_SPACING) + 1;
-            for (var c = 0; c < cols; c++) {
-                for (var r = 0; r < rows; r++) {
-                    ctx.beginPath();
-                    ctx.arc(
-                        c * GRID_SPACING + px,
-                        r * GRID_SPACING + py,
-                        1, 0, Math.PI * 2
-                    );
-                    ctx.fill();
+        /* 中点変位法で稲妻の折れ線をつくる */
+        function makePath(x1, y1, x2, y2, offset) {
+            var pts = [{ x: x1, y: y1 }, { x: x2, y: y2 }];
+            for (var pass = 0; pass < 5; pass++) {
+                var next = [];
+                for (var i = 0; i < pts.length - 1; i++) {
+                    var a = pts[i];
+                    var b = pts[i + 1];
+                    var mx = (a.x + b.x) / 2;
+                    var my = (a.y + b.y) / 2;
+                    var nx = -(b.y - a.y);
+                    var ny = (b.x - a.x);
+                    var len = Math.sqrt(nx * nx + ny * ny) || 1;
+                    var d = (Math.random() - 0.5) * offset;
+                    next.push(a, { x: mx + (nx / len) * d, y: my + (ny / len) * d });
                 }
+                next.push(pts[pts.length - 1]);
+                pts = next;
+                offset *= 0.55;
             }
+            return pts;
         }
 
-        function drawArcs(dt) {
-            ctx.strokeStyle = COL_ARC;
-            ctx.lineWidth = 1.5;
-            for (var i = 0; i < arcs.length; i++) {
-                var a = arcs[i];
-                a.startAngle += a.speed * dt * a.direction;
-                ctx.beginPath();
-                ctx.arc(a.cx, a.cy, a.radius, a.startAngle, a.startAngle + a.sweep);
-                ctx.stroke();
+        /* 放電を1本生成する (枝分かれ付き) */
+        function spawnBolt() {
+            var angle = Math.random() * Math.PI * 2;
+            var reach = Math.min(w, h) * (0.32 + Math.random() * 0.42);
+            var tx = origin.x + Math.cos(angle) * reach;
+            var ty = origin.y + Math.sin(angle) * reach * 0.85;
+
+            var main = makePath(origin.x, origin.y, tx, ty, reach * 0.34);
+            var paths = [{ pts: main, width: 1.5 }];
+
+            var branchCount = 1 + Math.floor(Math.random() * 3);
+            for (var b = 0; b < branchCount; b++) {
+                var from = main[Math.floor(main.length * (0.25 + Math.random() * 0.55))];
+                var ba = angle + (Math.random() - 0.5) * 1.9;
+                var br = reach * (0.18 + Math.random() * 0.3);
+                paths.push({
+                    pts: makePath(from.x, from.y, from.x + Math.cos(ba) * br, from.y + Math.sin(ba) * br, br * 0.4),
+                    width: 0.7
+                });
             }
+
+            bolts.push({ paths: paths, life: 1, decay: 0.018 + Math.random() * 0.03 });
         }
 
-        function drawChartLine(dt) {
-            elapsed += dt * 0.0005;
-            ctx.strokeStyle = COL_CHART;
-            ctx.lineWidth = 1.5;
+        function strokePath(pts, width, alpha, color, blur) {
             ctx.beginPath();
-
-            var segments = 80;
-            for (var i = 0; i <= segments; i++) {
-                var t = i / segments;
-                var x = t * w;
-                var baseY = h * 0.65 - t * h * 0.3;
-                var wave = Math.sin(t * Math.PI * 3 + elapsed) * 20;
-                var wave2 = Math.sin(t * Math.PI * 5 + elapsed * 1.3) * 8;
-                var y = baseY + wave + wave2;
-
-                if (i === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            }
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (var i = 1; i < pts.length; i++) { ctx.lineTo(pts[i].x, pts[i].y); }
+            ctx.strokeStyle = color;
+            ctx.globalAlpha = alpha;
+            ctx.lineWidth = width;
+            ctx.shadowBlur = blur;
+            ctx.shadowColor = 'rgba(127,227,255,.9)';
             ctx.stroke();
         }
 
-        function updateAndDrawParticles(dt) {
-            var px = (mouseX - 0.5) * PARALLAX_AMOUNT;
-            var py = (mouseY - 0.5) * PARALLAX_AMOUNT;
-
-            for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                p.x += p.vx * dt * 0.06;
-                p.y += p.vy * dt * 0.06;
-                p.phase += dt * 0.002;
-
-                /* Wrap around edges */
-                if (p.x < -10) p.x = w + 10;
-                if (p.x > w + 10) p.x = -10;
-                if (p.y < -10) p.y = h + 10;
-                if (p.y > h + 10) p.y = -10;
-
-                var alpha = p.baseAlpha + Math.sin(p.phase) * 0.08;
-                ctx.fillStyle = 'rgba(' + COL_PARTICLE_BASE[0] + ',' + COL_PARTICLE_BASE[1] + ',' + COL_PARTICLE_BASE[2] + ',' + alpha.toFixed(3) + ')';
-                ctx.beginPath();
-                ctx.arc(p.x + px, p.y + py, p.r, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function updateAndDrawNodes(dt) {
-            var px = (mouseX - 0.5) * PARALLAX_AMOUNT;
-            var py = (mouseY - 0.5) * PARALLAX_AMOUNT;
-            var i, j, n, n2, dx, dy, dist;
-
-            /* Update positions */
-            for (i = 0; i < nodes.length; i++) {
-                n = nodes[i];
-                n.x += n.vx * dt * 0.06;
-                n.y += n.vy * dt * 0.06;
-
-                /* Bounce off edges with margin */
-                if (n.x < 20 || n.x > w - 20) n.vx *= -1;
-                if (n.y < 20 || n.y > h - 20) n.vy *= -1;
-                n.x = Math.max(20, Math.min(w - 20, n.x));
-                n.y = Math.max(20, Math.min(h - 20, n.y));
-            }
-
-            /* Draw connections */
-            ctx.strokeStyle = COL_CONNECTION;
-            ctx.lineWidth = 1;
-            for (i = 0; i < nodes.length; i++) {
-                for (j = i + 1; j < nodes.length; j++) {
-                    n = nodes[i];
-                    n2 = nodes[j];
-                    dx = (n.x + px) - (n2.x + px);
-                    dy = (n.y + py) - (n2.y + py);
-                    dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < CONNECTION_DIST) {
-                        var opacity = (1 - dist / CONNECTION_DIST) * 0.12;
-                        ctx.strokeStyle = 'rgba(58, 109, 240, ' + opacity.toFixed(3) + ')';
-                        ctx.beginPath();
-                        ctx.moveTo(n.x + px, n.y + py);
-                        ctx.lineTo(n2.x + px, n2.y + py);
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            /* Draw nodes with glow */
-            for (i = 0; i < nodes.length; i++) {
-                n = nodes[i];
-                var nx = n.x + px;
-                var ny = n.y + py;
-
-                /* Glow */
-                ctx.fillStyle = COL_NODE_GLOW;
-                ctx.beginPath();
-                ctx.arc(nx, ny, n.r * 3, 0, Math.PI * 2);
-                ctx.fill();
-
-                /* Core */
-                ctx.fillStyle = COL_NODE;
-                ctx.beginPath();
-                ctx.arc(nx, ny, n.r, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        /* --- Main animation loop --- */
-        function animate(timestamp) {
-            if (!lastTime) lastTime = timestamp;
-            var dt = Math.min(timestamp - lastTime, 50);
-            lastTime = timestamp;
-
-            /* Smooth mouse interpolation */
-            mouseX += (targetMouseX - mouseX) * 0.05;
-            mouseY += (targetMouseY - mouseY) * 0.05;
-
+        function draw() {
             ctx.clearRect(0, 0, w, h);
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
 
-            drawGrid();
-            drawArcs(dt);
-            drawChartLine(dt);
-            updateAndDrawParticles(dt);
-            updateAndDrawNodes(dt);
-
-            animId = requestAnimationFrame(animate);
-        }
-
-        function shouldAnimate() {
-            return pageVisible && canvasVisible;
-        }
-
-        function startAnimation() {
-            if (!animId && shouldAnimate()) {
-                lastTime = 0;
-                animId = requestAnimationFrame(animate);
+            /* 微粒子 */
+            for (var m = 0; m < motes.length; m++) {
+                var p = motes[m];
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.y < -6) { p.y = h + 6; p.x = Math.random() * w; }
+                if (p.x < -6) { p.x = w + 6; }
+                if (p.x > w + 6) { p.x = -6; }
+                ctx.beginPath();
+                ctx.globalAlpha = p.a;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = 'rgba(127,227,255,.7)';
+                ctx.fillStyle = '#9ceaff';
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
             }
-        }
 
-        function stopAnimation() {
-            if (animId) {
-                cancelAnimationFrame(animId);
-                animId = null;
-                lastTime = 0;
+            /* コロナ (起点のにじみ) */
+            var corona = ctx.createRadialGradient(origin.x, origin.y, 0, origin.x, origin.y, Math.min(w, h) * 0.34);
+            corona.addColorStop(0, 'rgba(127,227,255,.16)');
+            corona.addColorStop(1, 'rgba(127,227,255,0)');
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = corona;
+            ctx.fillRect(0, 0, w, h);
+
+            /* 放電 */
+            for (var i = bolts.length - 1; i >= 0; i--) {
+                var bolt = bolts[i];
+                var ease = bolt.life * bolt.life;
+                for (var j = 0; j < bolt.paths.length; j++) {
+                    var pth = bolt.paths[j];
+                    strokePath(pth.pts, pth.width * 3.4, ease * 0.16, 'rgba(47,149,196,1)', 22);
+                    strokePath(pth.pts, pth.width, ease * 0.85, 'rgba(180,240,255,1)', 14);
+                    strokePath(pth.pts, pth.width * 0.4, ease, '#ffffff', 6);
+                }
+                bolt.life -= bolt.decay;
+                if (bolt.life <= 0) { bolts.splice(i, 1); }
             }
+
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
+            ctx.globalCompositeOperation = 'source-over';
         }
 
-        function syncAnimationState() {
-            if (shouldAnimate()) {
-                startAnimation();
-            } else {
-                stopAnimation();
+        function loop(now) {
+            if (now > nextBoltAt && bolts.length < 5) {
+                spawnBolt();
+                nextBoltAt = now + (420 + Math.random() * 1500) / intensity;
             }
+            draw();
+            rafId = requestAnimationFrame(loop);
         }
 
-        /* --- Event listeners --- */
-        canvas.parentElement.addEventListener('mousemove', function (e) {
-            var rect = canvas.parentElement.getBoundingClientRect();
-            targetMouseX = (e.clientX - rect.left) / rect.width;
-            targetMouseY = (e.clientY - rect.top) / rect.height;
-        });
-
-        canvas.parentElement.addEventListener('mouseleave', function () {
-            targetMouseX = 0.5;
-            targetMouseY = 0.5;
-        });
-
-        document.addEventListener('visibilitychange', function () {
-            pageVisible = !document.hidden;
-            syncAnimationState();
-        });
-
-        if ('IntersectionObserver' in window) {
-            var canvasObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    canvasVisible = entry.isIntersecting;
-                    syncAnimationState();
-                });
-            }, { threshold: 0.01 });
-            canvasObserver.observe(canvas);
-        }
-
-        window.addEventListener('resize', handleResize, { passive: true });
-
-        /* --- Initialize --- */
         resize();
-        initEntities();
-        startAnimation();
-    }
 
-});
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resize, 180);
+        });
+
+        if (reduceMotion) {
+            /* 動きを抑える設定では、静止した一枚の放電図として描く */
+            spawnBolt();
+            spawnBolt();
+            draw();
+            return;
+        }
+
+        /* 画面外では描画を止める */
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && rafId === null) {
+                        rafId = requestAnimationFrame(loop);
+                    } else if (!entry.isIntersecting && rafId !== null) {
+                        cancelAnimationFrame(rafId);
+                        rafId = null;
+                    }
+                });
+            }, { threshold: 0 }).observe(canvas);
+        } else {
+            rafId = requestAnimationFrame(loop);
+        }
+    });
+})();
