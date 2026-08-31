@@ -10,7 +10,7 @@
     <meta name="keywords" content="alvavinci, Sora Intelligence, AI事業部, AI Operations, AIエージェント, 調査, 分析, 報告">
     <meta name="author" content="alvavinci LLC">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#05070a">
+    <meta name="theme-color" content="#F3F0FF">
     <link rel="canonical" href="https://alvavinci.com/sora-intelligence.html">
     <link rel="alternate" hreflang="ja" href="https://alvavinci.com/sora-intelligence.html">
     <link rel="alternate" hreflang="en" href="https://alvavinci.com/en/sora-intelligence.html">
@@ -23,12 +23,14 @@
     <meta property="og:image" content="https://alvavinci.com/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="alvavinci — AI AGENTS × REPEATABLE OPERATIONS">
     <meta property="og:site_name" content="alvavinci LLC">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI事業部 | alvavinci LLC">
     <meta name="twitter:description" content="Sora Intelligenceは、alvavinci LLCのAI事業部です。ソラをトップとするAIエージェント体制が、情報収集・整理・分析・報告を担い、意思決定の前段を整えます。">
     <meta name="twitter:image" content="https://alvavinci.com/og-image.jpg">
+    <meta name="twitter:image:alt" content="alvavinci — AI AGENTS × REPEATABLE OPERATIONS">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -36,7 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Serif+JP:wght@400;600&amp;display=swap">
+        href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Outfit:wght@400;600;800&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N91RPM3GYC"></script>
@@ -84,21 +86,19 @@
 
     <header class="site-header" id="header">
         <div class="container header-inner">
-            <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" opacity=".45"/><circle cx="12" cy="12" r="4.6" opacity=".7"/><path d="M12 1.6v4.2M12 18.2v4.2M1.6 12h4.2M18.2 12h4.2"/><path d="M13.4 7.4 10 12.4h3.1l-2.5 4.6" stroke-width="1.5"/></svg>alvavinci</a>
+            <a href="index.html" class="brand"><img src="assets/images/brand-mark.png" alt="" aria-hidden="true" width="396" height="420">alvavinci</a>
             <nav class="nav" aria-label="主要ナビゲーション">
                 <ul class="nav-list">
-                    <li><a href="index.html#about" class="nav-link">私たちについて</a></li>
-                    <li><a href="index.html#business" class="nav-link">事業領域</a></li>
-                    <li><a href="sora-intelligence.html" class="nav-link">AI事業部</a></li>
-                    <li><a href="corporate-development.html" class="nav-link">事業開発</a></li>
-                    <li><a href="real-estate.html" class="nav-link">不動産</a></li>
+                        <li><a href="index.html#about" class="nav-link">私たちについて</a></li>
+                        <li><a href="index.html#business" class="nav-link">事業領域</a></li>
+                        <li><a href="sora-intelligence.html" class="nav-link" aria-current="page">AI事業部</a></li>
+                        <li><a href="corporate-development.html" class="nav-link">事業開発</a></li>
+                        <li><a href="real-estate.html" class="nav-link">不動産</a></li>
                 </ul>
             </nav>
             <div class="lang"><span class="is-active">JA</span><span aria-hidden="true">/</span><a href="en/sora-intelligence.html" lang="en" hreflang="en">EN</a></div>
-            <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false"
-                aria-controls="drawer">
-                <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            </button>
+            <a href="#contact" class="header-cta">お問い合わせ</a>
+            <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer" data-label-open="メニューを開く" data-label-close="メニューを閉じる"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></button>
         </div>
         <div class="drawer" id="drawer">
             <a href="index.html#about">私たちについて<span>01</span></a>
@@ -111,149 +111,109 @@
 
     <main>
         <section class="page-hero">
-            <canvas class="arc-canvas" data-arc data-origin-x="0.86" data-origin-y="0.3"
-                data-intensity="0.5" aria-hidden="true"></canvas>
             <div class="container">
-                <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">トップ</a><span aria-hidden="true">/</span><span>AI事業部</span></nav>
-                <div class="page-hero-grid page-hero-grid--split">
-                    <div class="reveal">
-                        <span class="eyebrow">AI Division</span>
-                        <h1 class="page-hero-title">AI事業部について</h1>
+                <div class="panel-lg reveal">
+                    <div class="page-hero-grid"><div>
+                    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">トップ</a><span aria-hidden="true">/</span><b>AI事業部</b></nav>
+                    <span class="eyebrow">AI Division</span>
+                    <h1 class="page-hero-title">AI事業部について</h1>
+                    <div class="lead-cols">
                         <p>Sora Intelligenceは、alvavinciのAI事業部として、ソラをトップとするAIエージェントによる情報収集・整理・分析・報告の体制を構築しています。</p>
                         <p>代表が「判断」に集中できる環境をつくるため、各事業部に専門AIチームを配置し、部門横断で必要な情報を整流化しています。</p>
-                        <a href="#functions" class="btn btn--primary"><span>提供機能を見る</span></a>
                     </div>
-                    <div class="reveal d2">
-                        <figure class="plate plate--tone">
-                            <picture>
-                                <source srcset="assets/images/sora-icon.webp" type="image/webp">
-                                <img src="assets/images/sora-icon.jpg" alt="alvavinciのAIエージェントキャラクター ソラ" width="1200" height="1200"
-                                    decoding="async" loading="lazy">
-                            </picture>
-                            <figcaption><span>Fig. 02</span><b>Sora / Division Lead</b></figcaption>
-                        </figure>
+                    <div class="btn-row"><a href="#functions" class="btn btn--primary">提供機能を見る</a></div>
                     </div>
+                    <figure class="figure-tile">
+                        <picture>
+                            <source srcset="assets/images/sora-icon.webp" type="image/webp">
+                            <img src="assets/images/sora-icon.jpg" alt="alvavinciのAIエージェントキャラクター ソラ" width="1200" height="1200" decoding="async">
+                        </picture>
+                        <figcaption><span>SORA</span><b>DIVISION LEAD</b></figcaption>
+                    </figure></div>
                 </div>
             </div>
         </section>
 
-        <section id="philosophy" class="section">
-            <div class="container split">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">Philosophy</span>
-                    <h2 class="section-title">Sora Intelligenceの考え方</h2>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ I</span>
-                    </div>
-                </div>
-                <blockquote class="quote reveal">
+        <section id="philosophy" class="sec">
+            <div class="container">
+                <div class="quote-grid">
+                    <div class="quote-side reveal"><div><span class="eyebrow">01 / Philosophy</span><h2 class="sec-title">Sora Intelligenceの考え方</h2></div><p class="stamp">SORA INTELLIGENCE — AI DIVISION</p></div>
+                    <blockquote class="quote reveal d1">
                         <p>私たちは、AIを単なる自動化ツールではなく、経営判断の前段にある「情報の質」を引き上げるための実行基盤と考えています。</p>
                         <p>各事業部ごとに必要な情報源、分析観点、報告形式は異なります。その違いを前提に、専門性を持ったAIチームを組成し、現場に適した情報整理と継続運用を行います。</p>
                         <p>目指しているのは、情報の断片を増やすことではなく、代表や担当者が次の判断に進みやすい状態を日常的につくることです。</p>
-                </blockquote>
+                    </blockquote>
+                </div>
             </div>
         </section>
 
-        <section id="functions" class="section section--alt">
+        <section id="functions" class="sec">
             <div class="container">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">Functions</span>
-                    <h2 class="section-title">提供機能</h2>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ II</span>
-                    </div>
+                <div class="sec-head reveal">
+                    <div><span class="eyebrow">02 / Functions</span><h2 class="sec-title">提供機能</h2></div>
                 </div>
-                <div class="panel-grid panel-grid--4">
-                    <article class="panel reveal d0">
-                        <span class="panel-no">01</span>
-                        <h3>情報収集</h3>
-                        <p>各事業部に必要な市場情報、案件情報、ニュース、運用データを継続的に収集します。</p>
-                    </article>
-                    <article class="panel reveal d1">
-                        <span class="panel-no">02</span>
-                        <h3>整理・要約</h3>
-                        <p>散在する情報を意思決定しやすい形に整理し、重要論点が見える状態まで要約します。</p>
-                    </article>
-                    <article class="panel reveal d2">
-                        <span class="panel-no">03</span>
-                        <h3>分析・比較</h3>
-                        <p>案件比較、トレンド分析、財務観点の整理など、判断前に必要な視点を補強します。</p>
-                    </article>
-                    <article class="panel reveal d3">
-                        <span class="panel-no">04</span>
-                        <h3>報告運用</h3>
-                        <p>Slackや定期レポートを通じて、必要な相手に必要な粒度で継続的に共有します。</p>
-                    </article>
+                <div class="tiles tiles--4">
+                    <article class="tile reveal d0"><span class="tile-no tile-no--accent">01</span><h3>情報収集</h3><p>各事業部に必要な市場情報、案件情報、ニュース、運用データを継続的に収集します。</p></article>
+                    <article class="tile reveal d1"><span class="tile-no">02</span><h3>整理・要約</h3><p>散在する情報を意思決定しやすい形に整理し、重要論点が見える状態まで要約します。</p></article>
+                    <article class="tile reveal d2"><span class="tile-no">03</span><h3>分析・比較</h3><p>案件比較、トレンド分析、財務観点の整理など、判断前に必要な視点を補強します。</p></article>
+                    <article class="tile tile--dark reveal d3"><span class="tile-no">04</span><h3>報告運用</h3><p>Slackや定期レポートを通じて、必要な相手に必要な粒度で継続的に共有します。</p></article>
                 </div>
             </div>
         </section>
 
-        <section id="teams" class="section">
+        <section id="teams" class="sec">
             <div class="container">
-                <div class="section-head section-head--center reveal ">
-                    <span class="eyebrow">Structure</span>
-                    <h2 class="section-title">AIチーム体制</h2>
-                    <p class="section-lead">ソラを司令塔として、事業ごとに専門AIチームを配置しています。共通基盤を持ちながら、各領域で必要な情報設計と運用ループを分けています。</p>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ III</span>
-                    </div>
+                <div class="panel-lg reveal">
+                <div class="sec-head reveal">
+                    <div><span class="eyebrow">03 / Structure</span><h2 class="sec-title">AIチーム体制</h2></div>
+                    <p class="sec-lead">ソラを司令塔として、事業ごとに専門AIチームを配置しています。共通基盤を持ちながら、各領域で必要な情報設計と運用ループを分けています。</p>
                 </div>
-                <div class="circuit">
-                    <div class="node node--source reveal">
-                        <h3>代表</h3>
-                        <p>Decision</p>
-                    </div>
-                    <span class="wire" aria-hidden="true"></span>
-                    <div class="node node--lead reveal d1">
-                        <picture>
-                            <source srcset="assets/images/sora-icon.webp" type="image/webp">
-                            <img src="assets/images/sora-icon.jpg" alt="alvavinciのAIエージェントキャラクター ソラ" width="1200"
-                                height="1200" loading="lazy" decoding="async">
-                        </picture>
-                        <h3>Sora Intelligence</h3>
-                        <p>ソラ / AIエージェント統括</p>
-                    </div>
-                    <span class="wire" aria-hidden="true"></span>
-                    <div class="branches">
-                        <div class="node reveal d1">
-                            <h3>不動産AIチーム</h3>
-                            <p>Mio</p>
-                            <ul><li>地域不動産 / 空間活用</li><li>8部門 / 26名</li></ul>
+                    <div class="flow">
+                        <div class="flow-node"><h3>代表</h3><p>DECISION</p></div>
+                        <span class="flow-wire" aria-hidden="true"></span>
+                        <div class="flow-node flow-node--lead">
+                            <picture>
+                                <source srcset="assets/images/sora-icon.webp" type="image/webp">
+                                <img src="assets/images/sora-icon.jpg" alt="alvavinciのAIエージェントキャラクター ソラ" width="1200" height="1200" loading="lazy" decoding="async">
+                            </picture>
+                            <div><h3>Sora Intelligence</h3><p>ソラ / AIエージェント統括</p></div>
                         </div>
-                        <div class="node reveal d2">
-                            <h3>事業開発AIチーム</h3>
-                            <p>Kana</p>
-                            <ul><li>案件分析 / 承継後改善</li><li>6部門 / 19名</li></ul>
-                        </div>
-                        <div class="node reveal d3">
-                            <h3>財務AIチーム</h3>
-                            <p>Rei</p>
-                            <ul><li>財務</li><li>3部門 / 6名</li></ul>
+                        <span class="flow-wire" aria-hidden="true"></span>
+                        <div class="flow-branches flow-branches--3">
+                            <div class="flow-node"><h3>不動産AIチーム</h3><p class="role">MIO</p><ul><li>地域不動産 / 空間活用</li><li>8部門 / 26名</li></ul></div>
+                            <div class="flow-node"><h3>事業開発AIチーム</h3><p class="role">KANA</p><ul><li>案件分析 / 承継後改善</li><li>6部門 / 19名</li></ul></div>
+                            <div class="flow-node"><h3>財務AIチーム</h3><p class="role">REI</p><ul><li>財務</li><li>3部門 / 6名</li></ul></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="operations" class="section section--alt">
-            <div class="container split">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">Operating Policy</span>
-                    <h2 class="section-title">運用方針</h2>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ IV</span>
-                    </div>
-                </div>
-                <ul class="spec-list reveal d1">
+        <section id="operations" class="sec">
+            <div class="container">
+                <div class="panel-lg reveal">
+                    <div class="split">
+                        <div><span class="eyebrow">04 / Operating Policy</span><h2 class="sec-title">運用方針</h2></div>
+                <ul class="checks reveal d1">
                     <li>最終判断は人が行い、AIはその前段の情報整備に徹します</li>
                     <li>部門ごとの文脈に合わせて、収集対象・粒度・報告形式を最適化します</li>
                     <li>情報の鮮度、前提条件、リスクを明示し、判断しやすい状態で共有します</li>
                     <li>新規事業や新しい運用要件にも対応できるよう、チーム設計自体を拡張可能に保ちます</li>
                 </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec sec--last" id="contact">
+            <div class="container">
+                <div class="cta reveal">
+                    <div><span class="eyebrow">Contact</span><h2 class="sec-title">ご相談・お問い合わせ</h2><p>事業承継・M&amp;A、事業開発、不動産の活用に関するご相談を承っています。初期段階の情報交換でも差し支えありません。</p></div>
+                    <div class="cta-links">
+                        <a href="https://forms.gle/z87DVg5M5MEULPZW8" class="cta-link cta-link--accent" target="_blank" rel="noopener noreferrer">事業承継・M&amp;Aのご相談<span aria-hidden="true">&rarr;</span></a>
+                        <a href="https://forms.gle/VsCsg5ijZCvYFRT37" class="cta-link" target="_blank" rel="noopener noreferrer">不動産のご相談<span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -262,7 +222,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" opacity=".45"/><circle cx="12" cy="12" r="4.6" opacity=".7"/><path d="M12 1.6v4.2M12 18.2v4.2M1.6 12h4.2M18.2 12h4.2"/><path d="M13.4 7.4 10 12.4h3.1l-2.5 4.6" stroke-width="1.5"/></svg>alvavinci</a>
+                    <a href="index.html" class="brand"><img src="assets/images/brand-mark.png" alt="" aria-hidden="true" width="396" height="420">alvavinci</a>
                     <p class="footer-tagline">AIエージェントを中心に、業務の再現性を設計する。</p>
                 </div>
                 <div class="footer-col">
@@ -281,10 +241,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-base">
-                <span>&copy; 2026 alvavinci LLC. 無断転載を禁じます。</span>
-                <span>TOKYO / JAPAN</span>
-            </div>
+            <div class="footer-base"><span>&copy; 2026 alvavinci LLC. 無断転載を禁じます。</span><span>TOKYO / JAPAN</span></div>
         </div>
     </footer>
 

@@ -5,14 +5,14 @@
 
 ## デザイン方針
 
-コンセプトは **High Voltage Laboratory**。
-19世紀末の電気実験室と特許図面のトーンを、現代のAIエージェント基盤の説明に接続しています。
+コンセプトは **Kinetic Console**。
+AIエージェントの稼働感を、明るい紙面とモジュール式のカード、コンソール表示で表現しています。
 
-- 漆黒（`#05070a`）の紙面に、放電のシアン（`#7fe3ff`）と計器の真鍮（`#d8b25a`）を差す
-- 見出しはセリフ体（Cormorant Garamond / Noto Serif JP）、ラベルと数値は等幅（IBM Plex Mono）
-- セクションには `§ I` 〜 の通し番号、図版には `Fig. 01` のキャプションを付ける
-- ヒーローの放電アニメーションは Canvas 2D の自前実装。外部ライブラリ依存はゼロ
-- `prefers-reduced-motion: reduce` の環境では、アニメーションを静止画として描画する
+- ラベンダー（`#F3F0FF`）を背景に、白いカードと濃色のコンソール面を組み合わせる
+- ブランドの紫（`#5B2E96`）とライム（`#C6FF3D`）をアクセントに使う
+- 見出しは Zen Kaku Gothic New、英字は Outfit、ラベルと数値は Space Grotesk を使う
+- セクション番号は `01 / ABOUT` の形式で統一する
+- `prefers-reduced-motion: reduce` の環境では、スクロール演出とアニメーションを抑制する
 
 ## ページ構成
 
@@ -29,12 +29,13 @@
 | パス | 内容 |
 | --- | --- |
 | `assets/css/style.css` | サイト全体の共通スタイル。トークン定義から各コンポーネントまで一括管理 |
-| `assets/js/script.js` | ヘッダー、モバイルドロワー、スクロールリビール、放電Canvas |
+| `assets/js/script.js` | モバイルドロワーとスクロールリビール |
+| `assets/images/brand-mark.png` | ヘッダーとフッターで使用するブランドマーク |
 | `assets/images/alvin-mascot.*` | AIエージェントキャラクター Alvin |
 | `assets/images/sora-icon.*` | AI事業部リード ソラ |
-| `assets/legacy/*` | 現行HTMLからは参照されていない旧デザイン案の退避先 |
+| `assets/legacy/*` | 現行HTMLから参照されない旧デザイン案の退避先 |
 | `robots.txt` / `sitemap.xml` | クロール設定と公開ページ一覧 |
-| `og-image.jpg` | OGP 共通画像 |
+| `og-image.jpg` | 新デザインに合わせた 1200 × 630 px のOGP共通画像 |
 
 ## ローカル確認
 

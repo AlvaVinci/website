@@ -10,7 +10,7 @@
     <meta name="keywords" content="alvavinci, AI agents, agentic automation, operations design, business development, business succession, real estate, investment, Sora Intelligence">
     <meta name="author" content="alvavinci LLC">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#05070a">
+    <meta name="theme-color" content="#F3F0FF">
     <link rel="canonical" href="https://alvavinci.com/en/">
     <link rel="alternate" hreflang="ja" href="https://alvavinci.com/">
     <link rel="alternate" hreflang="en" href="https://alvavinci.com/en/">
@@ -23,12 +23,14 @@
     <meta property="og:image" content="https://alvavinci.com/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="alvavinci — AI AGENTS × REPEATABLE OPERATIONS">
     <meta property="og:site_name" content="alvavinci LLC">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="alvavinci LLC | AI-agent-centered operations design">
     <meta name="twitter:description" content="alvavinci LLC breaks down business processes and redesigns them around AI agents, building operations where judgment and execution stay repeatable.">
     <meta name="twitter:image" content="https://alvavinci.com/og-image.jpg">
+    <meta name="twitter:image:alt" content="alvavinci — AI AGENTS × REPEATABLE OPERATIONS">
 
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -36,7 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Serif+JP:wght@400;600&amp;display=swap">
+        href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Outfit:wght@400;600;800&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap">
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N91RPM3GYC"></script>
@@ -52,7 +54,7 @@
         "@type": "Organization",
         "name": "alvavinci LLC",
         "url": "https://alvavinci.com/",
-        "logo": "https://alvavinci.com/favicon.svg",
+        "logo": "https://alvavinci.com/assets/images/brand-mark.png",
         "description": "alvavinci LLC designs AI-agent-centered operations and execution systems.",
         "inLanguage": "en",
         "knowsAbout": [
@@ -79,21 +81,19 @@
 
     <header class="site-header" id="header">
         <div class="container header-inner">
-            <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" opacity=".45"/><circle cx="12" cy="12" r="4.6" opacity=".7"/><path d="M12 1.6v4.2M12 18.2v4.2M1.6 12h4.2M18.2 12h4.2"/><path d="M13.4 7.4 10 12.4h3.1l-2.5 4.6" stroke-width="1.5"/></svg>alvavinci</a>
+            <a href="index.html" class="brand"><img src="../assets/images/brand-mark.png" alt="" aria-hidden="true" width="396" height="420">alvavinci</a>
             <nav class="nav" aria-label="Primary navigation">
                 <ul class="nav-list">
-                    <li><a href="index.html#about" class="nav-link">About</a></li>
-                    <li><a href="index.html#business" class="nav-link">Businesses</a></li>
-                    <li><a href="sora-intelligence.html" class="nav-link">AI Division</a></li>
-                    <li><a href="corporate-development.html" class="nav-link">Development</a></li>
-                    <li><a href="real-estate.html" class="nav-link">Real Estate</a></li>
+                        <li><a href="index.html#about" class="nav-link" aria-current="page">About</a></li>
+                        <li><a href="index.html#business" class="nav-link">Businesses</a></li>
+                        <li><a href="sora-intelligence.html" class="nav-link">AI Division</a></li>
+                        <li><a href="corporate-development.html" class="nav-link">Development</a></li>
+                        <li><a href="real-estate.html" class="nav-link">Real Estate</a></li>
                 </ul>
             </nav>
             <div class="lang"><a href="../" lang="ja" hreflang="ja">JA</a><span aria-hidden="true">/</span><span class="is-active">EN</span></div>
-            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"
-                aria-controls="drawer">
-                <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            </button>
+            <a href="#contact" class="header-cta">Contact</a>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-label-open="Open menu" data-label-close="Close menu"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></button>
         </div>
         <div class="drawer" id="drawer">
             <a href="index.html#about">About<span>01</span></a>
@@ -106,208 +106,130 @@
 
     <main>
         <section class="hero">
-            <canvas class="arc-canvas" data-arc data-origin-x="0.79" data-origin-y="0.4"
-                data-intensity="1" aria-hidden="true"></canvas>
             <div class="container">
                 <div class="hero-grid">
-                    <div class="hero-copy reveal">
-                        <span class="eyebrow">Alvavinci LLC — Agentic Operations</span>
-                        <h1 class="hero-title">Designing <em>repeatable operations</em><br>around AI agents.</h1>
-                        <p class="hero-lead">We are not simply an AI development firm. We embed AI agents into the operating model itself — across operations design, business development, real assets, and investment.</p>
-                        <div class="hero-actions">
-                            <a href="#about" class="btn btn--primary"><span>About alvavinci</span></a>
-                            <a href="#business" class="btn"><span>View businesses</span></a>
+                    <div class="hero-main">
+                        <div class="hero-card reveal">
+                            <span class="badge"><i aria-hidden="true"></i>12 AGENTS RUNNING</span>
+                            <h1 class="hero-title">Designing <mark>repeatable operations</mark> around AI agents.</h1>
+                            <p class="hero-lead">We are not simply an AI development firm. We embed AI agents into the operating model itself — across operations design, business development, real assets, and investment.</p>
+                            <div class="btn-row"><a href="#about" class="btn btn--primary">About alvavinci</a><a href="#business" class="btn">View businesses</a></div>
                         </div>
-                        <div class="readout">
-                            <div>
-                                <p class="readout-key">AI Agents</p>
-                                <p class="readout-val">Research, analysis, reporting</p>
-                            </div>
-                            <div>
-                                <p class="readout-key">Operations</p>
-                                <p class="readout-val">Process design and execution</p>
-                            </div>
-                            <div>
-                                <p class="readout-key">Portfolio</p>
-                                <p class="readout-val">Operations, investment, development</p>
-                            </div>
+                        <div class="readout reveal d1">
+                            <div><p class="readout-key">AI Agents</p><p class="readout-val">Research, analysis, reporting</p></div>
+                            <div><p class="readout-key">Operations</p><p class="readout-val">Process design and execution</p></div>
+                            <div><p class="readout-key">Portfolio</p><p class="readout-val">Operations, investment, development</p></div>
                         </div>
                     </div>
-                    <div class="reveal d2">
-                        <figure class="plate ">
+                    <aside class="lane reveal d2">
+                        <div class="lane-head"><span>AGENT ACTIVITY</span><b>LIVE</b></div>
+                        <div class="lane-agent">
                             <picture>
                                 <source srcset="../assets/images/alvin-mascot.webp" type="image/webp">
-                                <img src="../assets/images/alvin-mascot.png" alt="Alvin, alvavinci's AI agent character" width="1024" height="1024"
-                                    decoding="async" loading="lazy">
+                                <img src="../assets/images/alvin-mascot.png" alt="Alvin, alvavinci's AI agent character" width="1024" height="1024" decoding="async">
                             </picture>
-                            <figcaption><span>Fig. 01</span><b>Alvin / AI Agent</b></figcaption>
-                        </figure>
-                        <p class="status"><i aria-hidden="true"></i>Alvin is organizing business workflows</p>
-                    </div>
-                </div>
-                <div class="hero-scroll" aria-hidden="true">
-                    <span>Scroll</span><i></i>
+                            <div><h3>Alvin</h3><p>Organizing business workflows</p></div>
+                        </div>
+                        <ul class="lane-rows">
+                            <li><i aria-hidden="true"></i><p>Generating market research report</p><time>00:42</time></li>
+                            <li class="is-alt"><i aria-hidden="true"></i><p>Screening succession candidates</p><time>03:15</time></li>
+                            <li><i aria-hidden="true"></i><p>Monitoring property data changes</p><time>11:07</time></li>
+                            <li><i aria-hidden="true"></i><p>Summarizing weekly operations report</p><time>24:00</time></li>
+                            <li class="is-alt"><i aria-hidden="true"></i><p>Aggregating group company reports</p><time>36:20</time></li>
+                        </ul>
+                        <div class="lane-foot"><span>OPERATIONS / TOKYO</span><a href="#structure">&rarr; Group structure</a></div>
+                    </aside>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="section">
+        <section id="about" class="sec">
             <div class="container">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">About</span>
-                    <h2 class="section-title">What alvavinci works on</h2>
-                    <p class="section-lead">We do not add AI as a standalone tool. We redesign workflows, decision criteria, and information handoffs so agents can carry real operating load.</p>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ I</span>
-                    </div>
+                <div class="sec-head reveal">
+                    <div><span class="eyebrow">01 / About</span><h2 class="sec-title">What alvavinci works on</h2></div>
+                    <p class="sec-lead">We do not add AI as a standalone tool. We redesign workflows, decision criteria, and information handoffs so agents can carry real operating load.</p>
                 </div>
-                <div class="panel-grid panel-grid--3">
-                    <article class="panel reveal d0">
-                        <span class="panel-no">01</span>
-                        <h3>Break down work</h3>
-                        <p>We map tacit decisions, checks, reporting, and handoffs into clear units that AI agents can support.</p>
-                    </article>
-                    <article class="panel reveal d1">
-                        <span class="panel-no">02</span>
-                        <h3>Design agents</h3>
-                        <p>We assign agents to defined roles such as research, analysis, summarization, monitoring, and reporting.</p>
-                    </article>
-                    <article class="panel reveal d2">
-                        <span class="panel-no">03</span>
-                        <h3>Embed operations</h3>
-                        <p>We focus on operating loops that run continuously and improve, rather than one-off automation projects.</p>
-                    </article>
+                <div class="tiles tiles--3">
+                    <article class="tile reveal d0"><span class="tile-no tile-no--accent">01</span><h3>Break down work</h3><p>We map tacit decisions, checks, reporting, and handoffs into clear units that AI agents can support.</p></article>
+                    <article class="tile reveal d1"><span class="tile-no">02</span><h3>Design agents</h3><p>We assign agents to defined roles such as research, analysis, summarization, monitoring, and reporting.</p></article>
+                    <article class="tile tile--dark reveal d2"><span class="tile-no">03</span><h3>Embed operations</h3><p>We focus on operating loops that run continuously and improve, rather than one-off automation projects.</p></article>
                 </div>
             </div>
         </section>
 
-        <section id="approach" class="section section--alt">
-            <div class="container split">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">Approach</span>
-                    <h2 class="section-title">Reducing dependency<br>on individual know-how</h2>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ II</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="prose reveal d1">
-                        <p>Many business operations rely on personal judgment and experience. alvavinci makes that structure explicit and lets AI agents carry research, framing, comparison, reporting, and execution support.</p><p>The goal is not to replace people. It is to hold the work before and after a decision steady, so people can focus on the decisions that actually matter.</p>
-                    </div>
-                    <div style="height:28px"></div>
-                <ul class="spec-list reveal d2">
+        <section id="approach" class="sec">
+            <div class="container">
+                <div class="panel-lg reveal">
+                    <div class="split">
+                        <div><span class="eyebrow">02 / Approach</span><h2 class="sec-title">Reducing dependency on individual know-how</h2></div>
+                        <div>
+                            <div class="prose"><p>Many business operations rely on personal judgment and experience. alvavinci makes that structure explicit and lets AI agents carry research, framing, comparison, reporting, and execution support.</p><p>The goal is not to replace people. It is to hold the work before and after a decision steady, so people can focus on the decisions that actually matter.</p></div>
+                            <div style="height:28px"></div>
+                <ul class="checks reveal d1">
                     <li>Standardize work that varies by individual operator</li>
                     <li>Run research, analysis, and reporting as repeatable operations</li>
                     <li>Keep business context reusable across teams and projects</li>
                 </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="business" class="section">
-            <div class="container">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">Businesses</span>
-                    <h2 class="section-title">Business areas</h2>
-                    <p class="section-lead">We build long-term value across business development, real assets, and investment, with AI agents at the center of the operating model.</p>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ III</span>
-                    </div>
-                </div>
-                <div class="cards">
-                    <a href="sora-intelligence.html" class="card card--link reveal d1">
-                        <span class="card-mark" aria-hidden="true">I</span>
-                        <h3>AI Division</h3>
-                        <p>Sora Intelligence operates AI teams for research, analysis, and reporting, preparing the ground before decisions.</p>
-                        <span class="card-more">Learn more</span>
-                    </a>
-                    <a href="corporate-development.html" class="card card--link reveal d2">
-                        <span class="card-mark" aria-hidden="true">II</span>
-                        <h3>Business Development</h3>
-                        <p>Through succession and strategic acquisition, we respect existing strengths and continuity while building long-term value.</p>
-                        <span class="card-more">Learn more</span>
-                    </a>
-                    <a href="real-estate.html" class="card card--link reveal d3">
-                        <span class="card-mark" aria-hidden="true">III</span>
-                        <h3>Real Estate</h3>
-                        <p>As part of regional revitalization, we evaluate IT- and AI-enabled acquisition, space utilization, lodging, and commercial operations.</p>
-                        <span class="card-more">Learn more</span>
-                    </a>
-                    <article class="card reveal d1">
-                        <span class="card-mark" aria-hidden="true">IV</span>
-                        <h3>Investment Management</h3>
-                        <p>We allocate capital across assets such as crypto assets and U.S. equities with a long-term view.</p>
-                    </article>
-                    <article class="card reveal d2">
-                        <span class="card-mark" aria-hidden="true">V</span>
-                        <h3>Group Operations</h3>
-                        <p>We support group companies with AI-agent-enabled operating systems.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="structure" class="section section--alt">
-            <div class="container">
-                <div class="section-head section-head--center reveal ">
-                    <span class="eyebrow">Structure</span>
-                    <h2 class="section-title">Group structure</h2>
-                    <p class="section-lead">alvavinci LLC coordinates business companies and AI teams to support operations and decisions across the group.</p>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ IV</span>
-                    </div>
-                </div>
-                <div class="circuit">
-                    <div class="node node--source reveal">
-                        <h3>alvavinci LLC</h3>
-                        <p>Operations design / investment / group operations</p>
-                    </div>
-                    <span class="wire" aria-hidden="true"></span>
-                    <div class="branches branches--2">
-                        <div class="node reveal d1">
-                            <h3>Nispatch Inc.</h3>
-                            <p>Group Company</p>
-                            <ul><li>IT / AI / SES</li><li>Development and operational support</li></ul>
-                        </div>
-                        <div class="node reveal d2">
-                            <h3>Nocolle Inc.</h3>
-                            <p>Group Company</p>
-                            <ul><li>New business platform</li><li>Business validation, brand and IP operations</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="message" class="section">
-            <div class="container split">
-                <div class="section-head reveal ">
-                    <span class="eyebrow">Message</span>
-                    <h2 class="section-title">Our operating belief</h2>
-                    <div class="section-rule">
-                        <span class="electrode" aria-hidden="true"></span>
-                        <span class="section-index">§ V</span>
+        <section id="business" class="sec">
+            <div class="container">
+                <div class="sec-head reveal">
+                    <div><span class="eyebrow">03 / Businesses</span><h2 class="sec-title">Business areas</h2></div>
+                    <p class="sec-lead">We build long-term value across business development, real assets, and investment, with AI agents at the center of the operating model.</p>
+                </div>
+                <div class="bento">
+                    <a href="sora-intelligence.html" class="is-wide is-primary reveal d1"><span class="mark">I</span><h3>AI Division</h3><p>Sora Intelligence operates AI teams for research, analysis, and reporting, preparing the ground before decisions.</p><span class="more">Learn more &rarr;</span></a>
+                    <a href="corporate-development.html" class="is-wide reveal d2"><span class="mark">II</span><h3>Business Development</h3><p>Through succession and strategic acquisition, we respect existing strengths and continuity while building long-term value.</p><span class="more">Learn more &rarr;</span></a>
+                    <a href="real-estate.html" class="is-half reveal d1"><span class="mark">III</span><h3>Real Estate</h3><p>As part of regional revitalization, we evaluate IT- and AI-enabled acquisition, space utilization, lodging, and commercial operations.</p><span class="more">Learn more &rarr;</span></a>
+                    <article class="is-half is-accent reveal d2"><span class="mark">IV</span><h3>Investment Management</h3><p>We allocate capital across assets such as crypto assets and U.S. equities with a long-term view.</p></article>
+                    <article class="is-half is-dark reveal d3"><span class="mark">V</span><h3>Group Operations</h3><p>We support group companies with AI-agent-enabled operating systems.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="structure" class="sec">
+            <div class="container">
+                <div class="panel-lg reveal">
+                <div class="sec-head reveal">
+                    <div><span class="eyebrow">04 / Structure</span><h2 class="sec-title">Group structure</h2></div>
+                    <p class="sec-lead">alvavinci LLC coordinates business companies and AI teams to support operations and decisions across the group.</p>
+                </div>
+                    <div class="flow">
+                        <div class="flow-node flow-node--primary"><h3>alvavinci LLC</h3><p>Operations design / investment / group operations</p></div>
+                        <span class="flow-wire" aria-hidden="true"></span>
+                        <div class="flow-branches flow-branches--2">
+                            <div class="flow-node"><h3>Nispatch Inc.</h3><p>GROUP COMPANY</p><ul><li>IT / AI / SES</li><li>Development and operational support</li></ul></div>
+                            <div class="flow-node"><h3>Nocolle Inc.</h3><p>GROUP COMPANY</p><ul><li>New business platform</li><li>Business validation, brand and IP operations</li></ul></div>
+                        </div>
                     </div>
                 </div>
-                <blockquote class="quote reveal">
+            </div>
+        </section>
+
+        <section id="message" class="sec">
+            <div class="container">
+                <div class="quote-grid">
+                    <div class="quote-side reveal"><div><span class="eyebrow">05 / Message</span><h2 class="sec-title">Our operating belief</h2></div><p class="stamp">ALVAVINCI LLC — TOKYO / JAPAN</p></div>
+                    <blockquote class="quote reveal d1">
                         <p>AI's value is not only in making tasks faster. Its deeper value is in redesigning how decisions, checks, communication, and execution happen inside a business.</p>
                         <p>alvavinci builds operations where AI agents naturally support the information and judgment needed in investment and business management.</p>
-                </blockquote>
+                    </blockquote>
+                </div>
             </div>
         </section>
 
-        <section class="section">
+        <section class="sec sec--last" id="contact">
             <div class="container">
                 <div class="cta reveal">
-                    <h2 class="section-title">Get in touch</h2>
-                    <p>We welcome conversations on business succession, acquisitions, business development, and real estate utilization — including early-stage exchanges.</p>
-                    <div class="hero-actions" style="justify-content:center;margin-top:6px;">
-                        <a href="https://forms.gle/z87DVg5M5MEULPZW8" class="btn btn--primary" target="_blank" rel="noopener noreferrer"><span>Business development</span></a>
-                        <a href="https://forms.gle/VsCsg5ijZCvYFRT37" class="btn " target="_blank" rel="noopener noreferrer"><span>Real estate</span></a>
+                    <div><span class="eyebrow">Contact</span><h2 class="sec-title">Get in touch</h2><p>We welcome conversations on business succession, acquisitions, business development, and real estate utilization — including early-stage exchanges.</p></div>
+                    <div class="cta-links">
+                        <a href="https://forms.gle/z87DVg5M5MEULPZW8" class="cta-link cta-link--accent" target="_blank" rel="noopener noreferrer">Business development<span aria-hidden="true">&rarr;</span></a>
+                        <a href="https://forms.gle/VsCsg5ijZCvYFRT37" class="cta-link" target="_blank" rel="noopener noreferrer">Real estate<span aria-hidden="true">&rarr;</span></a>
                     </div>
                 </div>
             </div>
@@ -318,7 +240,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" opacity=".45"/><circle cx="12" cy="12" r="4.6" opacity=".7"/><path d="M12 1.6v4.2M12 18.2v4.2M1.6 12h4.2M18.2 12h4.2"/><path d="M13.4 7.4 10 12.4h3.1l-2.5 4.6" stroke-width="1.5"/></svg>alvavinci</a>
+                    <a href="index.html" class="brand"><img src="../assets/images/brand-mark.png" alt="" aria-hidden="true" width="396" height="420">alvavinci</a>
                     <p class="footer-tagline">Designing repeatable operations around AI agents.</p>
                 </div>
                 <div class="footer-col">
@@ -337,10 +259,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-base">
-                <span>&copy; 2026 alvavinci LLC. All rights reserved.</span>
-                <span>TOKYO / JAPAN</span>
-            </div>
+            <div class="footer-base"><span>&copy; 2026 alvavinci LLC. All rights reserved.</span><span>TOKYO / JAPAN</span></div>
         </div>
     </footer>
 
