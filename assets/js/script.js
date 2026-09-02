@@ -24,8 +24,14 @@
             burger.setAttribute('aria-expanded', String(open));
             burger.setAttribute('aria-label', open ? labelClose : label);
             drawer.setAttribute('aria-hidden', String(!open));
+            if ('inert' in drawer) { drawer.inert = !open; }
             drawer.classList.toggle('is-open', open);
             document.body.style.overflow = open ? 'hidden' : '';
+
+            if (open) {
+                var firstLink = drawer.querySelector('a');
+                if (firstLink) { firstLink.focus(); }
+            }
         };
 
         setDrawer(false);
@@ -50,6 +56,20 @@
                 setDrawer(false);
                 burger.focus();
             }
+
+            if (e.key === 'Tab' && burger.getAttribute('aria-expanded') === 'true') {
+                var focusable = Array.prototype.slice.call(drawer.querySelectorAll('a'));
+                if (!focusable.length) { return; }
+                var first = focusable[0];
+                var last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
         });
 
         window.addEventListener('resize', function () {
@@ -66,6 +86,8 @@
         Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-in'); });
         return;
     }
+
+    Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-animated'); });
 
     var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
